@@ -22,3 +22,60 @@ Git 作为一个源码管理系统，不可避免涉及到多人协作。
 代码，那么此问题将很难被发现且被修复
 
 在一个成熟的代码管理系统中，是应该杜绝此类问题的。所以，一个成熟的`Git Workflow`显得尤为重要
+
+# 分支模型
+
+`Git Workflow`有以下几种分支
+- master
+- develop
+- feature/xxx
+- bugfix/xxx
+- hotfix/xxx
+- release/xxx
+
+## master
+
+`master`分支的作用在于存放一个最近最新的版本，本身该分支并不做任何修改。`master`分支会定期从`release`分支同步最新的
+代码（通过`Pull Request`）进行代码合并
+
+## develop
+
+`develop`分支存放的是最新的开发代码，所有开发分支应该从`develop`分支创建新的开发分支（可以是`feature`、`bugfix`、`hotfix`）用于
+开发最新的功能，开发完成并测试后，将代码合并到`develop`分支
+
+## feature
+
+`feature`分支主要是存放开发新功能时的分支，每一个功能对应一个分支，且开发完成并合并代码后不能删除原来的分支bugfix`并不是
+对应一个具体分支，而是一个任务一个分支
+> 严禁多个功能对应一个分支
+
+## bugfix
+
+`bugfix`分支对应`Bug`修改的代码，每一个`Bug`对应一个分支。`bugfix`并不是对应一个具体分支，而是一个任务一个分支
+> 严禁多个`Bug`对应一个分支
+
+
+## hotfix
+
+`hotfix`分支对应线上问题`紧急修复`的代码，每一个`紧急修复`对应一个分支。`hotfix`并不是对应一个具体分支，而是一个任务一个分支。`hotfix`分支
+只能从`release`分支拉出来，且需要合并到如下分支（假如现在有如下版本：v0.0.1、v0.0.2、v0.0.3，其中线上的版本是v0.0.2，`紧急修复`是v0.0.1）
+- 对应的`release`分支
+- `develop`分支
+- `release/v0.0.3`分支
+
+> 严禁多个`Bug`对应一个分支
+
+## release
+
+`release`分支主要用来存放版本发布的代码，假如要发布v0.0.1版本，刚从`develop`创建`release/v0.0.1`分支；`release`分支需要
+定期向`master`分支合并代码（可以是这次发布合并上一个版本的代码到`master`分支）
+
+## 分支命名规则
+
+分支命名规则只对如下分支起作用
+- feature
+- bugfix
+- hotfix
+- release
+
+下面以
