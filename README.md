@@ -76,4 +76,24 @@ Git 作为一个源码管理系统，不可避免涉及到多人协作，协作�
 - hotfix
 - release
 
-下面以
+其中，`feature`、`bugfix`以及`hotfix`的命名规范是一样的，而`release`分支的规范不同
+
+### feature
+
+下面以`feature`分支命名来解释分支命名规范，假设有如下任务`ITCOURSEE-24 后台打包成Docker镜像`，其中
+- ITCOURSEE表示一个项目的键
+- 24表示任务的编号
+- 后面的是任务的简单名称
+
+那么，分支的命名为：feature/ITCOURSEE-24-`后台打包成Docker镜像`的英文翻译
+
+### release
+
+`release`分支以版本发布为准，建议的版本规范为：`major`.`minor`.`patch-build`，其中
+- `major`表示主版本号
+- `minor`表示次版本号
+- `patch`表示对`minor`版本的修订次数
+- `build`为编译次数
+
+那么版本号将为`0.0.1`、`0.0.2`，以此类推，以发布`0.0.1`版本为例，将从`develop`分支签出分支`release/v0.0.1`，至于要不要在前面加上`v`，
+都可以，可以视团队内部而定
